@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Fresh Cart - Online Grocery Shopping</title>
+    <link rel="stylesheet" href="{% static 'includes\ContactUs.css' %}">
+	<link rel="stylesheet" href="{% static 'includes\Universal.css' %}">
+  </head>
+<body>
+	<header>
+		<hr>
+	
+	  <hr>
+	  <nav>
+        <ul class="navigation-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+                <li><a href="/logout/">Logout</a></li>
+                <li>Account : {{ request.user.username }}</li>
+            {% else %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/register/">Create An Account</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+		<form class="search-form" action="{% url 'search_products' %}" method="get">
+			<div class="search-dropdown">
+				<input type="text" id="search" name="text" placeholder="Search...">
+				<div class="search-results"></div>
+			</div>
+			<button type="submit">Search</button>
+		</form>
+	</header>
+	<hr>
+	
+	  <hr>
+	<hr>
+	<div class="container">
+		<h1>Contact Us</h1>
+		<form name="contForm" id="contact-form" method="post" >
+			<label for="Name">Name</label>
+			<input type="text" id="name" name="InqName" placeholder="Enter your name" required>
+			
+			<label for="email">Email</label>
+			<input type="email" id="email" name="InqMail" placeholder="Enter your email" required>
+			
+			<label for="subject">Subject</label>
+			<input type="text" id="subject" name="InqSubject" placeholder="Enter your subject" required>
+			
+			<label for="message">Message</label>
+			<textarea id="message" name="InqMessage" placeholder="Enter your message" required></textarea>
+			
+			<button type="submit" id="submitContact" name="submit">Submit</button>
+		</form>
+	</div>
+	<hr>
+	<footer>
+		<div class="footer-container">
+			<div class="logo">
+				<h2>Fresh Cart</h2>
+				<h1>Your grocery shopping made easy!</h1>
+			</div>
+			<div class="footer-links">
+				<ul>
+					<li><a href="/home/">Home</a></li>
+					<li><a href="/AboutUs/">About Us</a></li>
+					<li><a href="/ContactUs/">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<div class="container2">
+            <h1>Leave A Review</h1>
+            <form id="contact-form" method="post">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="message">Review</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                
+                <button type="submit" id="submit" name="submit">Submit</button>
+            </form>
+        </div>
+    <ul>
+    <div class="footer-links">
+			<a href="#">Terms and Conditions</a>
+			<a href="#">Privacy Policy</a>
+			<a href="#">FAQ</a>
+    </ul>
+		</div>
+		<p>&copy; 2023 Fresh Cart. All rights reserved.</p>
+	</footer>
+</body>
+<script src="{% static 'Scripts\Universal.js' %}"></script>
+<script src="{% static 'Scripts\ContactUs.js' %}"></script>
+</html>

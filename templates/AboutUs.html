@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Overcooked Pizza - Crafting Pizzas with Love and Passion!</title>
+    <link rel="stylesheet" href="{% static 'includes\AboutUs.css' %}">
+	<link rel="stylesheet" href="{% static 'includes\Universal.css' %}">
+  </head>
+<body>
+	<header>
+		<hr>
+	
+	  <hr>
+	  <nav>
+        <ul class="navigation-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+                <li><a href="/logout/">Logout</a></li>
+                <li>Account : {{ request.user.username }}</li>
+            {% else %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/register/">Create An Account</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+		<div class="search-container">
+			<form class="search-form" action="{% url 'search_products' %}" method="get">
+				<div class="search-dropdown">
+					<input type="text" id="search" name="text" placeholder="Search...">
+					<div class="search-results"></div>
+				</div>
+				<button type="submit">Search</button>
+			</form>
+			</div>
+	</header>
+	<hr>
+	
+	  <hr>
+	<hr>
+	<main>
+		<section class="banner">
+			<h2>Welcome to Overcooked Pizza!</h2>
+			<p>Welcome to Overcooked Pizza, where a passion for pizza meets the art of flavor. With every slice, we strive to bring you a taste experience that's nothing short of extraordinary. Our journey began with a simple idea: to craft pizzas that ignite the senses and warm the soul. From our hand-kneaded dough to our thoughtfully curated toppings, each creation is a labor of love. Nestled in the heart of Cairo, we're more than just a pizzeria; we're a gathering place for friends and families to savor life's delicious moments. Join us on this culinary adventure, where traditions blend with innovation and every bite tells a story. Come share a slice of happiness at Overcooked Pizza.</p>
+		</section>
+		
+		<section class="mission">
+			<h3>Our Mission</h3>
+			<p>At OverCooked Pizza, our mission is simple: to serve up more than just pizza. We're on a journey to create moments of joy and connection through every slice we craft. Guided by a commitment to quality, flavor, and community, we strive to exceed expectations in every aspect of our business. Our mission is to handcraft each pizza with the finest ingredients, blending traditional techniques with innovative combinations to awaken your taste buds. We believe in fostering a welcoming environment where friends and families can gather to share a meal and make memories. With every order, we're not just delivering pizza – we're delivering happiness. Join us in embracing the delight of delicious food, genuine hospitality, and the love we pour into every dish. Welcome to a place where every slice tells a story, and you're a part of it.</p>
+		</section>
+		
+		<section class="team">
+			<h3>Meet Our Team</h3>
+			<ul>
+				<li><h4>Youssef Ayman Ramy</h4><p>Founder & CEO</p></li>
+				<li><h4>Jane macey</h4><p>Marketing Manager</p></li>
+				<li><h4>John Doe</h4><p>Customer Service Representative</p></li>
+				<li><h4>Richard Moore</h4><p>Operations Manager</p></li>
+			</ul>
+		</section>
+	</main>
+	<hr>
+	<footer>
+		<div class="footer-container">
+			<div class="logo">
+				<h2>Overcooked Pizza</h2>
+				<h1>Crafting Pizzas with Love and Passion!</h1>
+			</div>
+			<div class="footer-links">
+				<ul>
+					<li><a href="/home/">Home</a></li>
+					<li><a href="/AboutUs/">About Us</a></li>
+					<li><a href="/ContactUs/">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<div class="container2">
+            <h1>Leave A Message</h1>
+            <form id="contact-form" method="post">
+                <label for="name">First Name</label>
+                <input type="text" id="Fname" name="UserFirstName" placeholder="Enter your First name" required>
+				<label for="name">Last Name</label>
+                <input type="text" id="Lname" name="UserLastName" placeholder="Enter your Last name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="Uemail" name="UserEmail" placeholder="Enter your email" required>
+                
+                <label for="message">Review</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                
+                <button type="submit" id="submit" name="submit">Submit</button>
+            </form>
+        </div>
+    <ul>
+    <div class="footer-links">
+			<a href="#">Terms and Conditions</a>
+			<a href="#">Privacy Policy</a>
+			<a href="#">FAQ</a>
+    </ul>
+		</div>
+		<p>&copy; 2023 Overcooked Pizza. All rights reserved.</p>
+	</footer>
+</body>
+<script src="{% static 'Scripts\Universal.js' %}"></script>
+</html>

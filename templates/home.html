@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OverCooked Pizza - Crafting Pizzas with Love and Passion!</title>
+    <link rel="stylesheet" href="{% static 'includes/home.css' %}">
+    <link rel="stylesheet" href="{% static 'includes/Universal.css' %}">
+</head>
+<body>
+<header>
+    <hr>
+	
+	<hr>
+    <nav>
+        <ul class="navigation-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/account/">Account</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+                <li><a href="/logout/">Logout</a></li>
+                <li><button id="cartButton" class="btn">Toggle Cart</button></li>
+                <li><span id="greeting"></span>,{{ request.user.username }}</li>
+            {% else %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/register/">Create An Account</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            {% endif %}
+        </ul>
+        {% if request.user.is_authenticated %}
+         <p id="totalCartPrice"></p>
+         {% endif %}
+    </nav>
+    <div class="search-container">
+        <form class="search-form" action="{% url 'search_products' %}" method="get">
+            <div class="search-dropdown">
+                <input type="text" id="search" name="text" placeholder="Search...">
+                <div class="search-results"></div>
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</header>
+<hr>
+{% if request.user.is_authenticated %}
+    <div id="cartDiv" class = "cart">
+        <h2>Your Cart:</h2>
+        <hr>
+        <ul id="cartList">
+        </ul>
+    </div>
+{% endif %}    
+<hr>
+<div class="hero">
+    <div class="hero-text">
+        <h1>Welcome to OverCooked Pizza</h1>
+        <p>Discover a symphony of flavors and indulge in pizza perfection at our artisan pizzeria, where every slice is a delightful journey that will keep you coming back for more!</p>
+    </div>
+</div>
+<hr class="botdiv">
+<main>
+    <section class="featured">
+        <div class="product-container">
+            <div class="product">
+                <img src="{% static '/images/Bundles.jpeg' %}" alt="Product 1">
+                <a href="/BundlesSection/" class="btn">Bundles</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Popular.jpg' %}" alt="Product 2">
+                <a href="/PopularSection/" class="btn">Popular</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Pizza.jpg' %}" alt="Product 3">
+                <a href="/PizzaSection/" class="btn">Pizzas</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Pasta.jpg' %}" alt="Product 4">
+                <a href="/PastaSection/" class="btn">Pasta</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Desserts.jpg' %}" alt="Product 5">
+                <a href="/DesertSection/" class="btn">Desserts</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Salads.jpg' %}" alt="Product 6">
+                <a href="/SaladSection/" class="btn">Salads</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Sauce.png' %}" alt="Product 7">
+                <a href="/SauceSection/" class="btn">Sauce</a>
+            </div>
+            <div class="product">
+                <img src="{% static '/images/Drinks.jpg' %}" alt="Product 8">
+                <a href="/DrinksSection/" class="btn">Soft Drinks</a>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p>"Their pizzas are a slice of heaven! The crust is perfectly crispy, and the toppings are fresh and delicious. I've tried several combinations, and each one leaves me wanting more. Definitely my go-to pizza place now!"</p>
+                <p class="customer-name">- Sarah K.</p>
+            </div>
+            <div class="testimonial">
+                <p>"I can't resist ordering from them at least once a week. Their pizzas are consistently amazing, and the variety of flavors is impressive. The quality of ingredients shines through in every bite, making it the best pizza joint in town!"</p>
+                <p class="customer-name">- John D.</p>
+            </div>
+        </div>
+    </section>
+</main>
+<hr>
+<footer>
+    <div class="footer-container">
+        <div class="logo">
+            <h2>Overcooked Pizza</h2>
+            <h1>Crafting Pizzas with Love and Passion!</h1>
+        </div>
+        <div class="footer-links">
+            <ul>
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="container2">
+        <h1>Leave A Review</h1>
+        <form id="contact-form" method="post">
+            <label for="name">First Name</label>
+            <input type="text" id="Fname" name="UserFirstName" placeholder="Enter your First name" required>
+            <label for="name">Last Name</label>
+            <input type="text" id="Lname" name="UserLastName" placeholder="Enter your Last name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="Uemail" name="UserEmail" placeholder="Enter your email" required>
+            
+            <label for="message">Review</label>
+            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+            
+            <button type="submit" id="submit" name="submit">Submit</button>
+        </form>
+    </div>
+    <p>&copy; 2023 Overcooked Pizza. All rights reserved.</p>
+</footer>
+<script>
+    
+    function getRandomGreeting() {
+        var greetings = [
+            "Welcome back!",
+            "Hello there!",
+            "Good to see you!",
+            "Glad you're here!",
+            "Happy to have you!",
+        ];
+        var randomIndex = Math.floor(Math.random() * greetings.length);
+        return greetings[randomIndex];
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var greetingElement = document.getElementById("greeting");
+        if (greetingElement) {
+            greetingElement.textContent = getRandomGreeting();
+        }
+    });
+</script>
+
+<script>
+    /* I couldnt use django command because it doesnt work inside js to get the username
+    if (document.cookie.indexOf('username=') != -1) {
+        var username ={{ request.user.username }}, document.cookie.split('=')[1];
+        alert('Welcome Back ' + username);
+    } else {
+        alert('Hello Guest');
+    }*/
+    </script>
+</body>
+<script src= "{% static 'Scripts\Home.js'%}"></script>
+<script src="{% static 'Scripts\Universal.js'%}"></script>
+</html>

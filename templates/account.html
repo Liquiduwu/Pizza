@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Page</title>
+    <style type="text/css">
+        body {
+            background-color: #dfa63d;
+        }
+        form {
+            background-color: #fbbf58;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #fbbf58;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #fbbf58;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #fbbf58;
+        }
+        .container {
+            padding: 16px;
+        }
+        h1 {
+            text-align: center;
+            color: #b52a04;
+            margin-top: 30px;
+        }
+        .error {
+          color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Your Account Details</h1>
+    <form class="form-signin" method="post">{% csrf_token %}
+        <div class="d-flex flex-column pb-3">
+        </div>
+        
+        <h1 class="h3 mb-3 font-weight-normal">Update Details</h1>
+      
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        
+        <input type="username" name="username" id="inputUsername" class="form-control" placeholder="username" required>
+      
+        {% for field in account_form %}
+            <p>
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+        {% endfor %}
+        {% if account_form.non_field_errors %}
+          <div style="color: red">
+            <p>{{account_form.non_field_errors}}</p>
+          </div>
+            
+        {% endif %}
+      
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+      
+      </form>
+</body>
+</html>

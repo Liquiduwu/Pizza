@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>OverCooked Pizza - Crafting Pizzas with Love and Passion!</title>
+    <link rel="stylesheet" href="{% static 'includes/home.css' %}">
+    <link rel="stylesheet" href="{% static 'includes/Universal.css' %}">
+    <style>
+        .search-results {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .search-results li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            background-color: rgba(128, 128, 128, 0.1);
+        }
+        
+        .search-results li:hover {
+            background-color: rgba(128, 128, 128, 0.2);
+        }
+        
+        .product-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .product-details {
+            flex-grow: 1;
+        }
+        
+        .product-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .product-type {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .product-description {
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+        }
+    </style>
+    <hr>
+	
+    <hr>
+    <nav>
+        <ul class="navigation-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+                <li><a href="/logout/">Logout</a></li>
+                <li>Account : {{ request.user.username }}</li>
+            {% else %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/register/">Create An Account</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</head>
+<hr>
+	
+	  <hr>
+<body>
+    {% if products %}
+    <h2>Search Results for "{{ query }}"</h2>
+    <ul class="search-results">
+        {% for product in products %}
+            <li onclick="window.location.href='{{ product.productLoc }}'">
+                <div class="product-image">
+                    <img src="{{ product.productIMG.url }}" alt="Product Image">
+                </div>
+                <div class="product-details">
+                    <p class="product-name" style="color: inherit;">{{ product.Productname }}</p>
+                    <p class="product-type">Product Type: {{ product.productType }}</p>
+                    <p class="product-description">Description: {{ product.description }}</p>
+                    <p class="product-price">Price: ${{ product.price }}</p>
+                </div>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No products found.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style type="text/css">
+        body {
+            background-color: #dfa63d;
+        }
+        form {
+            background-color: #fbbf58;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 300px;
+            margin: 50px auto;
+        }
+        input[type=text], input[type=password], input[type=email] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #fbbf58;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #fbbf58;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #fbbf58;
+        }
+        .container {
+            padding: 16px;
+        }
+        h1 {
+            text-align: center;
+            color: #b52a04;
+            margin-top: 30px;
+        }
+        .error {
+          color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login with your Overcooked Account</h1>
+    <form class="form-signin" method="post">{% csrf_token %}
+        <div class="d-flex flex-column pb-3">
+        </div>
+        
+        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+      
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      
+        {% for field in login_form %}
+            <p>
+              {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+              {% endfor %}
+            </p>
+        {% endfor %}
+        {% if login_form.non_field_errors %}
+          <div style="color: red">
+            <p>{{login_form.non_field_errors}}</p>
+          </div>
+            
+        {% endif %}
+      
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+      
+      </form>
+</body>
+</html>

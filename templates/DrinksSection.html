@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>OverCooked Pizza - Crafting Pizzas with Love and Passion!</title>
+    <link rel="stylesheet" href="{% static 'includes/UniversalSection.css' %}">
+    <link rel="stylesheet" href="{% static 'includes/Universal.css' %}">
+  </head>
+<body>
+	<header>
+		<hr>
+	
+	  <hr>
+	  <nav>
+        <ul class="navigation-menu">
+            {% if request.user.is_authenticated %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+				<li><a href="/account/">Account</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+                <li><a href="/logout/">Logout</a></li>
+				<li><button id="cartButton" class="btn">Toggle Cart</button></li>
+                <li>Account : {{ request.user.username }}</li>
+            {% else %}
+                <li><a href="/home/">Home</a></li>
+                <li><a href="/register/">Create An Account</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/AboutUs/">About Us</a></li>
+                <li><a href="/ContactUs/">Contact Us</a></li>
+            {% endif %}
+        </ul>
+		{% if request.user.is_authenticated %}
+		<p id="totalCartPrice"></p>
+		{% endif %}
+    </nav>
+		<div class="search-container">
+			<form class="search-form" action="{% url 'search_products' %}" method="get">
+				<div class="search-dropdown">
+					<input type="text" id="search" name="text" placeholder="Search...">
+					<div class="search-results"></div>
+				</div>
+				<button type="submit">Search</button>
+			</form>
+			</div>
+	</header>
+	<hr>
+{% if request.user.is_authenticated %}
+    <div id="cartDiv" class = "cart">
+        <h2>Your Cart:</h2>
+        <hr>
+        <ul id="cartList">
+        </ul>
+    </div>
+{% endif %}    
+<hr>
+	  <section class="featured">
+		<h2>Featured Drinks</h2>
+		<div class="product-container">
+			<div class="product">
+				<img src="{% static 'images\7up.jpg' %}" alt="Product 1">
+				<h3>7up Can</h3>
+				<h3>15 EGP</h3>
+				<button id="myButton1" class="btn">Add To Cart</button>
+			</div>
+				<div class="product">
+					<img src="{% static 'images\water.jpg' %}" alt="Product 2">
+					<h3>water bottle 330 ml</h3>
+					<h3>10 EGP</h3>
+					<button id="myButton2" class="btn">Add To Cart</button>
+				</div>
+                <div class="product">
+					<img src="{% static 'images\mirindacan.jpg' %}" alt="Product 2">
+					<h3>Mirinda Orange Can</h3>
+					<h3>15 EGP</h3>
+					<button id="myButton3" class="btn">Add To Cart</button>
+				</div>
+                <div class="product">
+					<img src="{% static 'images\pepsican.jpg' %}" alt="Product 2">
+					<h3>Pepsi Can</h3>
+					<h3>15 EGP</h3>
+					<button id="myButton4" class="btn">Add To Cart</button>
+				</div>
+		</div>
+	</section>
+	<hr>
+	<footer>
+		<div class="footer-container">
+			<div class="logo">
+				<h2>OverCooked Pizza</h2>
+				<h1>Crafting Pizzas with Love and Passion!</h1>
+			</div>
+			<div class="footer-links">
+				<ul>
+					<li><a href="/home/">Home</a></li>
+					<li><a href="/AboutUs/">About Us</a></li>
+					<li><a href="/ContactUs/">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+		<hr>
+		<div class="container2">
+            <h1>Leave A Review</h1>
+            <form id="contact-form" method="post">
+                <label for="name">First Name</label>
+                <input type="text" id="Fname" name="UserFirstName" placeholder="Enter your First name" required>
+				<label for="name">Last Name</label>
+                <input type="text" id="Lname" name="UserLastName" placeholder="Enter your Last name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="Uemail" name="UserEmail" placeholder="Enter your email" required>
+                
+                <label for="message">Review</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                
+                <button type="submit" id="submit" name="submit">Submit</button>
+            </form>
+        </div>
+    <ul>
+    <div class="footer-links">
+			<a href="#">Terms and Conditions</a>
+			<a href="#">Privacy Policy</a>
+			<a href="#">FAQ</a>
+    </ul>
+		</div>
+		<p>&copy; 2023 OverCooked Pizza. All rights reserved.</p>
+	</footer>
+</body>
+<script src="{% static 'Scripts\DrinksSection.js'%}"></script>
+<script src=" {% static 'Scripts\Universal.js' %}"></script>
+</html>
+
+
