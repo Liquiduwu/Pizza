@@ -1,0 +1,173 @@
+
+body {
+	background-color: #fbbf58;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+header {
+	background-color: #fbbf58;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+}
+
+nav li {
+	margin-left: 20px;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+}
+  
+nav a {
+	color: #b52a04;
+	text-decoration: none;
+	padding: 10px 20px;
+	line-height: 40px;
+}
+
+nav a:hover {
+	color: #2E8B57;
+}
+
+.search-form {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+.search-form input[type="text"] {
+	width: 50%;
+	margin: 0 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+}
+  
+.search-form button[type="submit"] {
+	background-color: #fb8b23;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.search-form button:hover[type="submit"] {
+	background-color: #b52a04;
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 20px;
+	background-color: #fbbf58;
+}
+
+.logo h2 {
+	font-size: 2rem;
+    color: #b52a04;
+} 
+
+.logo h1 {
+	font-size: 1rem;
+    color: #000000;
+} 
+
+.footer-links ul {
+	list-style: none;
+}
+
+.footer-links li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.footer-links a {
+	display: block;
+	color: #333;
+	text-decoration: none;
+	padding: 5px;
+	transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+	color: #2E8B57;
+}
+
+.container2 {
+	max-width: 600px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+	height: 3px; 
+	border: none; 
+	background-color: #b52a04; 
+}
+
+hr.botdiv {
+	height: 6px; 
+	border: none; 
+	background-color: #b52a04; 
+}
+
+.container2 h1 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.container2 form {
+	margin:auto;
+	display:flex;
+	flex-direction: column;
+}
+
+.container2 label {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.container2 input, textarea {
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: none;
+	background-color: #f2f2f2;
+}
+
+.container2 textarea {
+	height: 150px;
+}
+
+.container2 button {
+	background-color: #fb8b23;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.container2 button:hover {
+	background-color: #b52a04;
+}

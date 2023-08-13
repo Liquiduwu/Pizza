@@ -1,0 +1,45 @@
+main {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.banner h2 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+.banner p {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.mission h3 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.mission p {
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.team h3 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.team ul {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+
+li {
+  display: inline-block;
+  width: 150px;
+  margin: 0 10px;
+}
